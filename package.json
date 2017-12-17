@@ -4,8 +4,9 @@
   "description": "Tns mystery helper",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js",
+    "start": "webpack-dev-server --config webpack.dev.js --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8050 --host 0.0.0.0",
     "build": "webpack --config webpack.prod.js",
+    "nodemon": "NODE_PATH=./src nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -19,8 +20,9 @@
     "eslint-loader": "1.9.0",
     "eslint-plugin-react": "7.5.1",
     "extract-text-webpack-plugin": "3.0.2",
-    "html-webpack-plugin": "2.30.1",
+    "node-sass": "4.7.2",
     "nodemon": "1.13.3",
+    "sass-loader": "6.0.6",
     "style-loader": "0.19.1",
     "uglifyjs-webpack-plugin": "1.1.4",
     "webpack": "3.10.0",
@@ -33,7 +35,9 @@
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
     "express": "4.16.2",
+    "prop-types": "^15.6.0",
     "react": "16.2.0",
+    "react-dom": "16.2.0",
     "react-redux": "5.0.6",
     "redux": "3.7.2",
     "redux-thunk": "2.2.0"

@@ -1,10 +1,36 @@
 import express  from 'express';
+import React    from 'react';
+import ReactDom from 'react-dom/server';
+import App      from './components/App/App';
 
 const app = express();
 
 app.use((req, res) => {
-    res.end('<p>Hello World!</p>');
+    const componentHTML = ReactDom.renderToString(<App />);
+
+    return res.end(renderHTML(componentHTML));
 });
+
+const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8050' : '/';
+
+function renderHTML(componentHTML) {
+    return `
+    <!DOCTYPE html>
+      <html>
+      <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Tns mystery manager</title>
+          <link rel="stylesheet" href="${assetUrl}/styles.css">
+      </head>
+      <body>
+        <div id="react-view">${componentHTML}</div>
+        <script type="application/javascript" src="${assetUrl}/common.bundle.js"></script>
+        <script type="application/javascript" src="${assetUrl}/main.bundle.js"></script>
+      </body>
+    </html>
+  `;
+}
 
 const PORT = process.env.PORT || 3001;
 
