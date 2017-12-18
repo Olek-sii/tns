@@ -1,25 +1,24 @@
 import './App.scss';
 import React, { Component } from 'react';
+import { Route, Link, Switch } from 'react-router-dom';
+import MainPage from '../MainPage';
+import ProtectedBlock from '../ProtectedBlock';
+import RoutePlannerBlock from '../RoutePlannerBlock';
 
-class App extends Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-            isShown: false
-        };
-    }
-    toggleIsShown = () => {
-        this.setState({isShown: !this.state.isShown});
-    };
+export default class App extends Component {
     render () {
         return (
-            <div className='app' onClick={this.toggleIsShown}>
-                {this.state.isShown
-                    ? <div>Toggle me 1</div>
-                    : <div>Toggle me 0</div>}
+            <div className='app'>
+                <span>Main Header</span><br/>
+                <Link to='/'>Main</Link>
+                <Link to='/messages'>Messages</Link>
+                <Link to='/planner'>RoutePlanner</Link>
+                <Switch>
+                    <Route path='/messages' component={ProtectedBlock} />
+                    <Route path='/planner' component={RoutePlannerBlock} />
+                    <Route path='/' component={MainPage} />
+                </Switch>
             </div>
         );
     }
 }
-
-export default App;

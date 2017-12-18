@@ -31,11 +31,7 @@ module.exports = {
                     use: ['css-loader', 'sass-loader']
                 })
             },
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loaders: ['babel-loader', 'eslint-loader']
-            }
+            { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader', 'eslint-loader'] }
         ]
     },
     output: {
