@@ -35,6 +35,7 @@
     "babel-preset-es2015": "6.24.1",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
+    "cookie-parser": "^1.4.3",
     "express": "4.16.2",
     "prop-types": "15.6.0",
     "react": "16.2.0",
@@ -42,6 +43,7 @@
     "react-redux": "5.0.6",
     "react-router-dom": "4.2.2",
     "redux": "3.7.2",
+    "redux-oauth": "2.0.8",
     "redux-thunk": "2.2.0"
   }
 }

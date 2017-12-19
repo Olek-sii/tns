@@ -5,7 +5,9 @@ import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const store = configureStore();
+const initialState = window.REDUX_INITIAL_STATE || {};
+
+const store = configureStore(initialState);
 
 ReactDOM.hydrate(
     <Provider store={store}>

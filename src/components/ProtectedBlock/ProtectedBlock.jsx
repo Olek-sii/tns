@@ -1,19 +1,20 @@
 import './ProtectedBlock.scss';
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import {connect} from 'react-redux';
 import MessagesPage from '../MessagesPage';
+import OAuthButton from '../authentication/OAuthButton';
 
 class ProtectedBlock extends Component {
-    isLoggedIn = () => true;
     render () {
-        if (this.props.match.isExact && this.isLoggedIn()) {
+        if (this.props.match.isExact && !this.props.userSignedIn) {
             return <Redirect to='messages/login' />;
         }
         return (
             <div>
                 <span>Protected messages page header</span><br/>
                 <Switch>
-                    <Route path='/messages/login' render={() => <span>Login btn</span>} />
+                    <Route path='/messages/login' render={() => <OAuthButton provider='google'/>}/>
                     <Route path='/messages' component={MessagesPage}/>
                 </Switch>
             </div>
@@ -21,4 +22,10 @@ class ProtectedBlock extends Component {
     }
 }
 
-export default ProtectedBlock;
+function mapStateToProps (state, ownProps) {
+    const loading = state.auth.getIn(['oAuthSignIn', ownProps.provider, 'loading']) || false;
+
+    return { userSignedIn: state.auth.getIn(['user', 'isSignedIn']), loading };
+}
+
+export default connect(mapStateToProps)(ProtectedBlock);
