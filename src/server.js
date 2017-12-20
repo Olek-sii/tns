@@ -1,4 +1,5 @@
 import { getHeaders, initialize } from 'redux-oauth';
+import { apiUrl} from './url';
 import App from './components/App';
 import { StaticRouter } from 'react-router-dom';
 import configureStore from './redux/configureStore';
@@ -15,7 +16,7 @@ app.use((req, res) => {
     const store = configureStore();
     return store.dispatch(initialize({
         backend: {
-            apiUrl: 'http://a4754e93.ngrok.io',
+            apiUrl: apiUrl,
             authProviderPaths: {
                 google: '/auth/google_oauth2'
             },
