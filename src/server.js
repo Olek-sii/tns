@@ -13,6 +13,11 @@ const app = express();
 app.use(cookieParser());
 
 app.use((req, res) => {
+    if (req.url === '/favicon.ico') {
+        res.writeHead(200, {'Content-Type': 'image/x-icon'} );
+        return res.end();
+    }
+
     const store = configureStore();
     return store.dispatch(initialize({
         backend: {
@@ -25,17 +30,6 @@ app.use((req, res) => {
         cookies: req.cookies,
         currentLocation: req.url,
     })).then(() => {
-            // if (redirectLocation) { // Если необходимо сделать redirect
-            //     return res.redirect(301, redirectLocation.pathname + redirectLocation.search);
-            // }
-            //
-            // if (error) { // Произошла ошибка любого рода
-            //     return res.status(500).send(error.message);
-            // }
-            //
-            // if (!renderProps) { // мы не определили путь, который бы подошел для URL
-            //     return res.status(404).send('Not found');
-            // }
             const context = {};
             const componentHTML = ReactDom.renderToString(
                 <Provider store={store}>
@@ -47,6 +41,7 @@ app.use((req, res) => {
             const state = store.getState();
 
             res.cookie('authHeaders', JSON.stringify(getHeaders(store.getState())), {maxAge: Date.now() + 14 * 24 * 3600 * 1000});
+
             return res.end(renderHTML(componentHTML, state));
         });
 });
