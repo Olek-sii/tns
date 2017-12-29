@@ -2,6 +2,7 @@ import './MessagesPage.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getMessages} from '../../redux/actions/messagesAction';
+import Message from '../Message';
 import SignOutButton from '../authentication/SignOutButton';
 
 class MessagesPage extends Component {
@@ -10,15 +11,12 @@ class MessagesPage extends Component {
     }
     render () {
         return (
-            <div>
-                <span>Messages page content</span>
-                <ul>
-                    {
-                        this.props.messages.map((message) =>
-                            <li key={message.message_id}>{message.adress}</li>
-                        )
-                    }
-                </ul>
+            <div className='messages-page'>
+                <ol>
+                    {this.props.messages.map((message) =>
+                        <li key={message.message_id}><Message message={message}/></li>
+                    )}
+                </ol>
                 <SignOutButton/>
             </div>
         );
