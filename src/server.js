@@ -1,6 +1,7 @@
 import { getHeaders, initialize } from 'redux-oauth';
 import { apiUrl} from './url';
 import App from './components/App';
+import { AppContainer } from 'react-hot-loader';
 import { StaticRouter } from 'react-router-dom';
 import configureStore from './redux/configureStore';
 import cookieParser from 'cookie-parser';
@@ -32,11 +33,13 @@ app.use((req, res) => {
     })).then(() => {
             const context = {};
             const componentHTML = ReactDom.renderToString(
-                <Provider store={store}>
-                    <StaticRouter context={context}>
-                        <App/>
-                    </StaticRouter>
-                </Provider>
+                <AppContainer>
+                    <Provider store={store}>
+                        <StaticRouter context={context}>
+                            <App/>
+                        </StaticRouter>
+                    </Provider>
+                </AppContainer>
             );
             const state = store.getState();
 
@@ -46,9 +49,10 @@ app.use((req, res) => {
         });
 });
 
-const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8050' : '/';
-
 function renderHTML (componentHTML, initialState) {
+    const staticUrl = 'http://localhost:8050';
+    const bundle = `${staticUrl}/static/build/bundle.js`;
+    const styles = `${staticUrl}/static/build/styles.css`;
     return `
     <!DOCTYPE html>
       <html>
@@ -56,15 +60,14 @@ function renderHTML (componentHTML, initialState) {
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Tns mystery manager</title>
-          <link rel="stylesheet" href="${assetUrl}/styles.css">
+          <link rel="stylesheet" href="${styles}">
           <script type="application/javascript">
             window.REDUX_INITIAL_STATE = ${JSON.stringify(initialState)};
           </script>
       </head>
       <body>
         <div id="react-view">${componentHTML}</div>
-        <script type="application/javascript" src="${assetUrl}/common.bundle.js"></script>
-        <script type="application/javascript" src="${assetUrl}/main.bundle.js"></script>
+        <script type="application/javascript" src="${bundle}"></script>
       </body>
     </html>
   `;

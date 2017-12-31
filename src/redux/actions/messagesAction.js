@@ -25,7 +25,6 @@ export function getMessages () {
 }
 
 export function updateMessage (id, isDone) {
-    console.log(id, isDone);
     return (dispatch, getState) => {
         dispatch(startUpdatingMessage());
         let headers = getHeaders(getState());
@@ -37,11 +36,9 @@ export function updateMessage (id, isDone) {
             headers: headers
         })).then(parseResponse)
             .then((payload) => {
-                console.log(payload);
                 dispatch(successUpdatingMessage(payload));
             })
             .catch((error) => {
-                console.log(error);
                 dispatch(failUpdatingMessage(error));
             });
     };

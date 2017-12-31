@@ -1,6 +1,10 @@
 .message {
   cursor: default;
   margin: 3px;
+  button, input {
+    margin: 2px;
+    padding: 2px;
+  }
   .message-expanded {
     margin: 3px;
     padding-left: 5px;

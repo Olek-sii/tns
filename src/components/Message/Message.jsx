@@ -20,7 +20,6 @@ class Message extends Component {
     };
     toggleIsDone = () => {
         let { message } = this.props;
-        console.log(message);
         this.props.updateMessage(message.message_id, !message.is_done);
     };
     render () {

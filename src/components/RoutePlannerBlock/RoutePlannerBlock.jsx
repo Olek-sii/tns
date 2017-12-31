@@ -5,7 +5,7 @@ class RoutePlannerBlock extends Component {
     render () {
         return (
             <div>
-                <span>RoutePlannerBlock page content</span>
+                <span>RoutePlannerBlock page content!!!!</span>
             </div>
         );
     }
