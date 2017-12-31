@@ -1,0 +1,39 @@
+.message {
+  background-color: lightyellow;
+  border: solid lightblue 1px;
+  border-radius: 2px;
+  cursor: default;
+  margin: 3px;
+  padding: 4px;
+
+  .message-caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .message-caption-left {
+      flex: 3;
+    }
+    .message-caption-right {
+      flex: 1;
+    }
+  }
+
+  .message-content {
+    display: flex;
+    justify-content: space-between;
+    .message-times {
+      flex: 3;
+    }
+
+    .message-testinfo {
+      flex: 1;
+    }
+  }
+
+  .message-controls {
+    display: flex;
+    button {
+      flex: 1;
+    }
+  }
+}

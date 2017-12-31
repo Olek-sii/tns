@@ -1,23 +1,44 @@
 import './MessagesPage.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import DetailedMessage from '../DetailedMessage';
 import {getMessages} from '../../redux/actions/messagesAction';
 import Message from '../Message';
 import SignOutButton from '../authentication/SignOutButton';
 
 class MessagesPage extends Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            detailedMessage: null
+        };
+    }
     componentWillMount () {
         this.props.getMessages();
     }
+    handleSetDetailedMessage = (message) => {
+        this.setState({detailedMessage: message});
+    }
     render () {
         return (
-            <div className='messages-page'>
-                <ol>
-                    {this.props.messages.map((message) =>
-                        <li key={message.message_id}><Message message={message}/></li>
-                    )}
-                </ol>
+            <div>
                 <SignOutButton/>
+                <div className='messages-page'>
+                    <div className="messages">
+                        {this.props.messages.map((message) =>
+                            <div key={message.message_id}>
+                                <Message
+                                    message={message}
+                                    setDetailed = {this.handleSetDetailedMessage}
+                                />
+                            </div>
+                        )}
+                    </div>
+                    <div className="message-expand">
+                        {this.state.detailedMessage &&
+                        <DetailedMessage message={this.state.detailedMessage}/>}
+                    </div>
+                </div>
             </div>
         );
     }

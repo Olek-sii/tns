@@ -11,7 +11,7 @@ module.exports = {
     entry: ['react-hot-loader/patch', './src/client.js'],
     plugins: [
         new CleanWebpackPlugin(['dist']),
-        new ExtractTextPlugin("styles.css"),
+        new ExtractTextPlugin(cssName),
         new webpack.NamedModulesPlugin()
         // new webpack.optimize.CommonsChunkPlugin({
         //     name: 'common'

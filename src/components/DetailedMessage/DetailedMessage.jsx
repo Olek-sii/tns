@@ -1,4 +1,4 @@
-import './Message.scss';
+import './DetailedMessage.scss';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -8,7 +8,7 @@ const propTypes = {
     message: PropTypes.object.isRequired
 };
 
-class Message extends Component {
+class DetailedMessage extends Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -22,35 +22,37 @@ class Message extends Component {
         let { message } = this.props;
         this.props.updateMessage(message.message_id, !message.is_done);
     };
-    handleHeaderClick = () => {
-        this.props.setDetailed(this.props.message);
-    };
     render () {
         let { message } = this.props;
         return (
             <div className='message'>
-                <div className="message-header" onClick={this.handleHeaderClick}>
-                    <input type='checkbox' defaultChecked={message.is_done} onClick={this.toggleIsDone} />
-                    <div>{message.address}</div>
-                    <button onClick={this.toggleIsExpanded}>expand</button>
-                </div>
-                {
-                    this.state.isExpanded &&
-                    <div className='message-expanded'>
-                        <div>{message.message_id}</div>
-                        {JSON.parse(message.times).map((time, k) => <div key={k}>{time}</div>)}
+                <div>{message.message_id}</div>
+                <div className="message-caption">
+                    <div className="message-caption-left">{message.address}</div>
+                    <div className="message-caption-right">
                         <div>End date: {message.end_date}</div>
                         <div>Price: {message.price}€</div>
+                    </div>
+                </div>
+                <div className="message-content">
+                    <div className="message-times">
+                        {JSON.parse(message.times).map((time, k) => <div key={k}>{time}</div>)}
+                    </div>
+                    <div className="message-testinfo">
                         <div>Test id: {message.test_id}</div>
                         <div>Check number: {message.check_number}</div>
                     </div>
-                }
+                </div>
+                <div className="message-controls">
+                    <button className="message-set-done">Done</button>
+                    <button className="message-mark">Mark</button>
+                </div>
             </div>
         );
     }
 }
 
-Message.propTypes = propTypes;
+DetailedMessage.propTypes = propTypes;
 
 function mapDispatchToProps (dispatch) {
     return {
@@ -58,4 +60,4 @@ function mapDispatchToProps (dispatch) {
     };
 }
 
-export default connect(null, mapDispatchToProps)(Message);
+export default connect(null, mapDispatchToProps)(DetailedMessage);

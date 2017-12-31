@@ -1,5 +1,23 @@
 .messages-page {
-  ol {
-    padding-left: 40px;
+  display: flex;
+  .messages {
+    flex: 1;
+  }
+  .message-expand {
+    flex: 2;
+  }
+  input, button {
+    margin: 5px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    background-color: lightsteelblue;
+    color: white;
+    outline: none;
+    box-shadow: none;
+    border: none;
+
+    &:hover {
+      background-color: darkslateblue;
+    }
   }
 }
