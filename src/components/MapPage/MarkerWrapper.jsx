@@ -1,6 +1,10 @@
-import './Map.scss';
 import { Marker, InfoWindow } from 'react-google-maps';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+    marker: PropTypes.object.isRequired
+};
 
 class MarkerWrapper extends Component {
     constructor (props) {
@@ -14,10 +18,7 @@ class MarkerWrapper extends Component {
     };
     render () {
         return (
-            <Marker
-                position={this.props.marker.latLng}
-                onClick={this.toggleOpen}
-            >
+            <Marker position={this.props.marker.latLng} onClick={this.toggleOpen}>
                 {
                     this.state.isOpen &&
                     <InfoWindow onCloseClick={this.toggleOpen}>
@@ -28,5 +29,7 @@ class MarkerWrapper extends Component {
         );
     }
 }
+
+MarkerWrapper.propTypes = propTypes;
 
 export default MarkerWrapper;

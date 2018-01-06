@@ -1,8 +1,12 @@
-import './Map.scss';
-import {GoogleMap, withGoogleMap } from 'react-google-maps';
+import { GoogleMap, withGoogleMap } from 'react-google-maps';
 import { connect } from 'react-redux';
 import MarkerWrapper from './MarkerWrapper';
+import PropTypes from 'prop-types';
 import React from 'react';
+
+const propTypes = {
+    markers: PropTypes.array.isRequired
+};
 
 const Map = ({markers}) => {
     return (
@@ -11,6 +15,8 @@ const Map = ({markers}) => {
         </GoogleMap>
     );
 };
+
+Map.propTypes = propTypes;
 
 function mapStateToProps (state) {
     return {
