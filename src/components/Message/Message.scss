@@ -9,6 +9,12 @@
   .message-header {
     display: flex;
     justify-content: space-between;
+    .message-header-left {
+      display: flex;
+    }
+    .message-header-right {
+      display: flex;
+    }
   }
   .message-expanded {
     margin: 3px;

@@ -1,14 +1,21 @@
 import './RoutePlannerBlock.scss';
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 class RoutePlannerBlock extends Component {
     render () {
         return (
             <div>
-                <span>RoutePlannerBlock page content!!!!</span>
+                <span>RouterPlannerBlock</span>
             </div>
         );
     }
 }
 
-export default RoutePlannerBlock;
+function mapStateToProps (state) {
+    return {
+        searchPoints: state.markers
+    };
+}
+
+export default connect(mapStateToProps)(RoutePlannerBlock);

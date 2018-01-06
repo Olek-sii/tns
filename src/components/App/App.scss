@@ -6,4 +6,25 @@
 .app {
   margin: 5px auto;
   font-family: Ubuntu;
+  .linksContainer {
+    display: flex;
+    .linkWrapper {
+      margin: 10px;
+      button {
+        padding: 10px;
+        border: none;
+        border-radius: 2px;
+        background-color: lightblue;
+        outline: none;
+        a {
+          color: black;
+          text-decoration: none;
+        }
+        &:hover {
+          background-color: dodgerblue;
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }

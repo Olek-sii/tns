@@ -1,6 +1,6 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 
 const publicPath = 'http://localhost:8050/static/build/';
@@ -29,7 +29,8 @@ module.exports = {
                     use: ['css-loader', 'sass-loader']
                 }))
             },
-            { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader', 'eslint-loader'] }
+            { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader', 'eslint-loader'] },
+            { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] }
         ]
     },
     output: {

@@ -1,7 +1,9 @@
 import './Message.scss';
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {toggleSearchPoint} from '../../redux/actions/markersAction';
 import {updateMessage} from '../../redux/actions/messagesAction';
 
 const propTypes = {
@@ -22,6 +24,13 @@ class Message extends Component {
         let { message } = this.props;
         this.props.updateMessage(message.message_id, !message.is_done);
     };
+    toggleIsOnSearch = (e) => {
+        let { message } = this.props;
+        let checked = e.target.checked;
+        geocodeByAddress(message.address)
+            .then(results => getLatLng(results[0]))
+            .then(latLng => this.props.toggleSearchPoint({...message, latLng}, checked));
+    };
     handleHeaderClick = () => {
         this.props.setDetailed(this.props.message);
     };
@@ -30,9 +39,14 @@ class Message extends Component {
         return (
             <div className='message'>
                 <div className="message-header" onClick={this.handleHeaderClick}>
-                    <input type='checkbox' defaultChecked={message.is_done} onClick={this.toggleIsDone} />
-                    <div>{message.address}</div>
-                    <button onClick={this.toggleIsExpanded}>expand</button>
+                    <div className="message-header-left">
+                        <input type='checkbox' defaultChecked={message.is_done} onClick={this.toggleIsDone} />
+                        <div>{message.address}</div>
+                    </div>
+                    <div className="message-header-right">
+                        <button onClick={this.toggleIsExpanded}>expand</button>
+                        <input type='checkbox' onClick={this.toggleIsOnSearch} />
+                    </div>
                 </div>
                 {
                     this.state.isExpanded &&
@@ -54,7 +68,8 @@ Message.propTypes = propTypes;
 
 function mapDispatchToProps (dispatch) {
     return {
-        updateMessage: (id, isDone) => dispatch(updateMessage(id, isDone))
+        updateMessage: (id, isDone) => dispatch(updateMessage(id, isDone)),
+        toggleSearchPoint: (id, isDone) => dispatch(toggleSearchPoint(id, isDone))
     };
 }
 

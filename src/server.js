@@ -15,7 +15,7 @@ app.use(cookieParser());
 
 app.use((req, res) => {
     if (req.url === '/favicon.ico') {
-        res.writeHead(200, {'Content-Type': 'image/x-icon'} );
+        res.writeHead(200, {'Content-Type': 'image/x-icon'});
         return res.end();
     }
 
@@ -29,24 +29,24 @@ app.use((req, res) => {
             signOutPath: null
         },
         cookies: req.cookies,
-        currentLocation: req.url,
+        currentLocation: req.url
     })).then(() => {
-            const context = {};
-            const componentHTML = ReactDom.renderToString(
-                <AppContainer>
-                    <Provider store={store}>
-                        <StaticRouter context={context}>
-                            <App/>
-                        </StaticRouter>
-                    </Provider>
-                </AppContainer>
-            );
-            const state = store.getState();
+        const context = {};
+        const componentHTML = ReactDom.renderToString(
+            <AppContainer>
+                <Provider store={store}>
+                    <StaticRouter context={context}>
+                        <App/>
+                    </StaticRouter>
+                </Provider>
+            </AppContainer>
+        );
+        const state = store.getState();
 
-            res.cookie('authHeaders', JSON.stringify(getHeaders(store.getState())), {maxAge: Date.now() + 14 * 24 * 3600 * 1000});
+        res.cookie('authHeaders', JSON.stringify(getHeaders(store.getState())), {maxAge: Date.now() + 14 * 24 * 3600 * 1000});
 
-            return res.end(renderHTML(componentHTML, state));
-        });
+        return res.end(renderHTML(componentHTML, state));
+    });
 });
 
 function renderHTML (componentHTML, initialState) {
@@ -64,6 +64,7 @@ function renderHTML (componentHTML, initialState) {
           <script type="application/javascript">
             window.REDUX_INITIAL_STATE = ${JSON.stringify(initialState)};
           </script>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfgfZ73sBKMPhJONub1MNNvCo-l7crK2I&libraries=places"type="text/javascript"></script>
       </head>
       <body>
         <div id="react-view">${componentHTML}</div>

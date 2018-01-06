@@ -1,3 +1,3 @@
-import MessagesPage from './RoutePlannerBlock';
+import RoutePlannerBlock from './RoutePlannerBlock';
 
-export default MessagesPage;
+export default RoutePlannerBlock;
