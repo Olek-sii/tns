@@ -1,6 +1,6 @@
 import './MapPage.scss';
 import React, { Component } from 'react';
-import Map from '../GoogleMap';
+import Map from '../Map';
 
 class MapPage extends Component {
     render () {
