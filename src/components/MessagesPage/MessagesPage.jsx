@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import DetailedMessage from '../DetailedMessage';
 import {getMessages} from '../../redux/actions/messagesAction';
 import Message from '../Message';
-import SignOutButton from '../authentication/SignOutButton';
 
 class MessagesPage extends Component {
     constructor (props) {
@@ -21,23 +20,20 @@ class MessagesPage extends Component {
     }
     render () {
         return (
-            <div>
-                <SignOutButton/>
-                <div className='messages-page'>
-                    <div className="messages">
-                        {this.props.messages.map((message) =>
-                            <div key={message.message_id}>
-                                <Message
-                                    message={message}
-                                    setDetailed = {this.handleSetDetailedMessage}
-                                />
-                            </div>
-                        )}
-                    </div>
-                    <div className="message-expand">
-                        {this.state.detailedMessage &&
-                        <DetailedMessage message={this.state.detailedMessage}/>}
-                    </div>
+            <div className='messages-page'>
+                <div className="messages">
+                    {this.props.messages.map((message) =>
+                        <div key={message.message_id}>
+                            <Message
+                                message={message}
+                                setDetailed = {this.handleSetDetailedMessage}
+                            />
+                        </div>
+                    )}
+                </div>
+                <div className="message-expand">
+                    {this.state.detailedMessage &&
+                    <DetailedMessage message={this.state.detailedMessage}/>}
                 </div>
             </div>
         );
