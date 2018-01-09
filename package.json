@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8050 --host 0.0.0.0",
     "build": "webpack --config webpack.prod.js",
+    "postinstall": "npm run build",
     "nodemon": "NODE_PATH=./src nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
