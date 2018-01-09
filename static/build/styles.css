@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Ubuntu; }
+
+html, body, .app, #react-view {
+  min-height: 100vh; }
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: deepskyblue; }
+  .header .links-container {
+    margin: 5px;
+    display: flex; }
+    .header .links-container .link-wrapper {
+      margin-left: 10px; }
+  .header .sign-out-button {
+    margin: 5px; }
+  .header button {
+    padding: 10px;
+    border: none;
+    border-radius: 2px;
+    background-color: lightblue;
+    outline: none; }
+    .header button a {
+      color: black;
+      text-decoration: none; }
+    .header button:hover {
+      background-color: dodgerblue;
+      cursor: pointer; }
+.protected-block {
+  margin: 5px; }
+.messages-page {
+  display: flex; }
+  .messages-page .messages {
+    flex: 7; }
+  .messages-page .message-expand {
+    flex: 9; }
+  .messages-page input, .messages-page button {
+    padding: 5px;
+    border: none;
+    border-radius: 2px;
+    background-color: lightblue;
+    outline: none;
+    box-shadow: none; }
+    .messages-page input:hover, .messages-page button:hover {
+      background-color: dodgerblue;
+      cursor: pointer; }
+.message {
+  background-color: lightyellow;
+  border: solid lightblue 1px;
+  border-radius: 2px;
+  cursor: default;
+  margin: 3px;
+  padding: 4px; }
+  .message .message-caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .message .message-caption .message-caption-left {
+      flex: 3; }
+    .message .message-caption .message-caption-right {
+      flex: 1; }
+  .message .message-content {
+    display: flex;
+    justify-content: space-between; }
+    .message .message-content .message-times {
+      flex: 3; }
+    .message .message-content .message-testinfo {
+      flex: 1; }
+  .message .message-controls {
+    display: flex; }
+    .message .message-controls button {
+      flex: 1; }
+.message {
+  background-color: lightyellow;
+  border: solid lightblue 1px;
+  border-radius: 2px;
+  cursor: default;
+  margin: 3px;
+  padding: 2px; }
+  .message .message-header {
+    display: flex;
+    justify-content: space-between; }
+    .message .message-header .message-header-left {
+      display: flex; }
+    .message .message-header .message-header-right {
+      display: flex; }
+  .message .message-expanded {
+    margin: 3px;
+    padding-left: 5px; }
+button {
+  margin: 1px auto;
+  background: #f0e68c; }
