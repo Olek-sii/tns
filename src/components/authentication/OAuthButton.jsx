@@ -1,3 +1,4 @@
+import './OAuthButton.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { oAuthSignIn } from 'redux-oauth';
@@ -24,7 +25,11 @@ class OAuthButton extends Component {
             return <Redirect to='/messages'/>;
         }
 
-        return <button onClick={this.handleClick}>{provider}</button>;
+        return (
+            <div className="oauth-button">
+                <button onClick={this.handleClick}>{provider}</button>
+            </div>
+        );
     }
 }
 

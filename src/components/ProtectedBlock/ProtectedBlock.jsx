@@ -11,12 +11,10 @@ class ProtectedBlock extends Component {
             return <Redirect to='messages/login' />;
         }
         return (
-            <div className='protected-block'>
-                <Switch>
-                    <Route path='/messages/login' render={() => <OAuthButton provider='google'/>}/>
-                    <Route path='/messages' component={MessagesPage}/>
-                </Switch>
-            </div>
+            <Switch>
+                <Route path='/messages/login' render={() => <OAuthButton provider='google'/>}/>
+                <Route path='/messages' component={MessagesPage}/>
+            </Switch>
         );
     }
 }
