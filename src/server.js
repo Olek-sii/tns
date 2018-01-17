@@ -1,7 +1,6 @@
 import { getHeaders, initialize } from 'redux-oauth';
 import { apiUrl} from './url';
 import App from './components/App';
-import { AppContainer } from 'react-hot-loader';
 import { StaticRouter } from 'react-router-dom';
 import configureStore from './redux/configureStore';
 import cookieParser from 'cookie-parser';
@@ -33,13 +32,11 @@ app.use((req, res) => {
     })).then(() => {
         const context = {};
         const componentHTML = ReactDom.renderToString(
-            <AppContainer>
-                <Provider store={store}>
-                    <StaticRouter context={context}>
-                        <App/>
-                    </StaticRouter>
-                </Provider>
-            </AppContainer>
+            <Provider store={store}>
+                <StaticRouter context={context}>
+                    <App/>
+                </StaticRouter>
+            </Provider>
         );
         const state = store.getState();
 

@@ -8,7 +8,7 @@ const cssName = process.env.NODE_ENV === 'production' ? 'styles-[hash].css' : 's
 const jsName = process.env.NODE_ENV === 'production' ? 'bundle-[hash].js' : 'bundle.js';
 
 module.exports = {
-    entry: ['react-hot-loader/patch', './src/client.js'],
+    entry: ['./src/client.js'],
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new ExtractTextPlugin(cssName),
